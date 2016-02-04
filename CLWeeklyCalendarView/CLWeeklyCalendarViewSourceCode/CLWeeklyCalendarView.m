@@ -44,11 +44,11 @@ NSString *const CLCalendarBackgroundImageColor = @"CLCalendarBackgroundImageColo
 //Default Values
 static NSInteger const CLCalendarWeekStartDayDefault = 1;
 static NSInteger const CLCalendarDayTitleTextColorDefault = 0xC2E8FF;
-static NSString* const CLCalendarSelectedDatePrintFormatDefault = @"EEE, d MMM yyyy";
+static NSString* const CLCalendarSelectedDatePrintFormatDefault = @"EEEE, d MMM yyyy";
 static float const CLCalendarSelectedDatePrintFontSizeDefault = 13.f;
 
-
 @interface CLWeeklyCalendarView()<DailyCalendarViewDelegate, UIGestureRecognizerDelegate>
+
 @property (nonatomic, strong) UIView *dailySubViewContainer;
 @property (nonatomic, strong) UIView *dayTitleSubViewContainer;
 @property (nonatomic, strong) UIImageView *backgroundImageView;
@@ -58,8 +58,6 @@ static float const CLCalendarSelectedDatePrintFontSizeDefault = 13.f;
 @property (nonatomic, strong) NSDate *startDate;
 @property (nonatomic, strong) NSDate *endDate;
 @property (nonatomic, strong) NSDictionary *arrDailyWeather;
-
-
 
 @property (nonatomic, strong) NSNumber *weekStartConfig;
 @property (nonatomic, strong) UIColor *dayTitleTextColor;
@@ -124,6 +122,8 @@ static float const CLCalendarSelectedDatePrintFontSizeDefault = 13.f;
     
     if ([self.delegate respondsToSelector:@selector(CLCalendarBehaviorAttributes)]) {
         attributes = [self.delegate CLCalendarBehaviorAttributes];
+    } else if (self.calendarAttributes != nil) {
+        attributes = self.calendarAttributes;
     }
     
     self.weekStartConfig = attributes[CLCalendarWeekStartDay] ? attributes[CLCalendarWeekStartDay] : [NSNumber numberWithInt:CLCalendarWeekStartDayDefault];
@@ -141,6 +141,7 @@ static float const CLCalendarSelectedDatePrintFontSizeDefault = 13.f;
     
     [self setNeedsDisplay];
 }
+
 -(UIView *)dailyInfoSubViewContainer
 {
     if(!_dailyInfoSubViewContainer){
@@ -155,6 +156,7 @@ static float const CLCalendarSelectedDatePrintFontSizeDefault = 13.f;
     }
     return _dailyInfoSubViewContainer;
 }
+
 -(UIImageView *)weatherIcon
 {
     if(!_weatherIcon){
@@ -162,6 +164,7 @@ static float const CLCalendarSelectedDatePrintFontSizeDefault = 13.f;
     }
     return _weatherIcon;
 }
+
 -(UILabel *)dateInfoLabel
 {
     if(!_dateInfoLabel){
@@ -173,6 +176,7 @@ static float const CLCalendarSelectedDatePrintFontSizeDefault = 13.f;
     _dateInfoLabel.textColor = self.selectedDatePrintColor;
     return _dateInfoLabel;
 }
+
 -(UIView *)dayTitleSubViewContainer
 {
     if(!_dayTitleSubViewContainer){
@@ -184,9 +188,10 @@ static float const CLCalendarSelectedDatePrintFontSizeDefault = 13.f;
     return _dayTitleSubViewContainer;
     
 }
+
 -(UIView *)dailySubViewContainer
 {
-    if(!_dailySubViewContainer){
+    if(!_dailySubViewContainer) {
         _dailySubViewContainer = [[UIImageView alloc] initWithFrame:CGRectMake(0, DATE_TITLE_MARGIN_TOP+DAY_TITLE_VIEW_HEIGHT+DATE_VIEW_MARGIN, self.bounds.size.width, DATE_VIEW_HEIGHT)];
         _dailySubViewContainer.backgroundColor = [UIColor clearColor];
         _dailySubViewContainer.userInteractionEnabled = YES;
@@ -194,11 +199,12 @@ static float const CLCalendarSelectedDatePrintFontSizeDefault = 13.f;
     }
     return _dailySubViewContainer;
 }
+
 -(UIImageView *)backgroundImageView
 {
-    if(!_backgroundImageView){
-        _backgroundImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height)];
+    if(!_backgroundImageView) {
         
+        _backgroundImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height)];
         
         _backgroundImageView.userInteractionEnabled = YES;
         [_backgroundImageView addSubview:self.dayTitleSubViewContainer];
@@ -224,16 +230,18 @@ static float const CLCalendarSelectedDatePrintFontSizeDefault = 13.f;
     _backgroundImageView.backgroundColor = self.backgroundImageColor? self.backgroundImageColor : [UIColor colorWithPatternImage:[UIImage calendarBackgroundImage:self.bounds.size.height]];;
     return _backgroundImageView;
 }
+
 -(void)initDailyViews
 {
     CGFloat dailyWidth = self.bounds.size.width/WEEKLY_VIEW_COUNT;
     NSDate *today = [NSDate new];
     NSDate *dtWeekStart = [today getWeekStartDate:self.weekStartConfig.integerValue];
     self.startDate = dtWeekStart;
-    for (UIView *v in [self.dailySubViewContainer subviews]){
+    
+    for (UIView *v in [self.dailySubViewContainer subviews]) {
         [v removeFromSuperview];
     }
-    for (UIView *v in [self.dayTitleSubViewContainer subviews]){
+    for (UIView *v in [self.dayTitleSubViewContainer subviews]) {
         [v removeFromSuperview];
     }
     
@@ -280,44 +288,38 @@ static float const CLCalendarSelectedDatePrintFontSizeDefault = 13.f;
     return view;
 }
 
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-    
-    [self initDailyViews];
-    
-}
-
 -(void)markDateSelected:(NSDate *)date
 {
     for (DailyCalendarView *v in [self.dailySubViewContainer subviews]){
         [v markSelected:([v.date isSameDateWith:date])];
     }
+    
     self.selectedDate = date;
     NSDateFormatter *dayFormatter = [[NSDateFormatter alloc] init];
     [dayFormatter setDateFormat:self.selectedDatePrintFormat];
     NSString *strDate = [dayFormatter stringFromDate:date];
-    if([date isDateToday]){
-        strDate = [NSString stringWithFormat:@"Today, %@", strDate ];
-    }
     
+    if([date isDateToday]) {
+        strDate = [NSString stringWithFormat:@"Today, %@", strDate];
+    }
     
     [self adjustDailyInfoLabelAndWeatherIcon : NO];
     
     
     self.dateInfoLabel.text = strDate;
 }
+
 -(void)dailyInfoViewDidClick: (UIGestureRecognizer *)tap
 {
     //Click to jump back to today
-    [self redrawToDate:[NSDate new] ];
+    [self redrawToDate:[NSDate new]];
 }
+
 -(void)dayTitleViewDidClick: (UIGestureRecognizer *)tap
 {
     [self redrawToDate:((DayTitleLabel *)tap.view).date];
 }
+
 -(void)redrawToDate:(NSDate *)dt
 {
     if(![dt isWithinDate:self.startDate toDate:self.endDate]){
@@ -327,11 +329,12 @@ static float const CLCalendarSelectedDatePrintFontSizeDefault = 13.f;
     
     [self dailyCalendarViewDidSelect:dt];
 }
+
 -(void)redrawCalenderData
 {
     [self redrawToDate:self.selectedDate];
-    
 }
+
 -(void)adjustDailyInfoLabelAndWeatherIcon: (BOOL)blnShowWeatherIcon
 {
     self.dateInfoLabel.textAlignment = (blnShowWeatherIcon)?NSTextAlignmentLeft:NSTextAlignmentCenter;
@@ -350,15 +353,18 @@ static float const CLCalendarSelectedDatePrintFontSizeDefault = 13.f;
     self.weatherIcon.hidden = !blnShowWeatherIcon;
 }
 
-#pragma swipe
+#pragma mark - UISwipeGestureRecognizer methods
+
 -(void)swipeLeft: (UISwipeGestureRecognizer *)swipe
 {
     [self delegateSwipeAnimation: NO blnToday:NO selectedDate:nil];
 }
+
 -(void)swipeRight: (UISwipeGestureRecognizer *)swipe
 {
     [self delegateSwipeAnimation: YES blnToday:NO selectedDate:nil];
 }
+
 -(void)delegateSwipeAnimation: (BOOL)blnSwipeRight blnToday: (BOOL)blnToday selectedDate:(NSDate *)selectedDate
 {
     CATransition *animation = [CATransition animation];
@@ -413,7 +419,7 @@ static float const CLCalendarSelectedDatePrintFontSizeDefault = 13.f;
 
 -(void)updateWeatherIconByKey:(NSString *)key
 {
-    if(!key){
+    if(!key) {
         [self adjustDailyInfoLabelAndWeatherIcon:NO];
         return;
     }
@@ -422,7 +428,8 @@ static float const CLCalendarSelectedDatePrintFontSizeDefault = 13.f;
     [self adjustDailyInfoLabelAndWeatherIcon:YES];
 }
 
-#pragma DeputyDailyCalendarViewDelegate
+#pragma mark - DeputyDailyCalendarViewDelegate
+
 -(void)dailyCalendarViewDidSelect:(NSDate *)date
 {
     [self markDateSelected:date];

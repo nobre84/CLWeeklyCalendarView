@@ -20,16 +20,7 @@ Pod::Spec.new do |s|
   s.platform     = :ios
 
   s.source       = { :git => "https://github.com/esusatyo/CLWeeklyCalendarView.git", :commit => "948410c1c4f13a977b2c864b3da5dc00ba16f209" }
-
-
-  # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  #
-  #  CocoaPods is smart about how it includes source code. For source files
-  #  giving a folder will include any swift, h, m, mm, c & cpp files.
-  #  For header files it will include any header in the folder.
-  #  Not including the public_header_files will make all headers public.
-  #
-
+  
   s.source_files  = "CLWeeklyCalendarView/CLWeeklyCalendarViewSourceCode/**/*.{h,m}"
 
 end

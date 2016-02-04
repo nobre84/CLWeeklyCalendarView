@@ -17,21 +17,18 @@ extern NSString *const CLCalendarSelectedDatePrintColor;    //Selected Date prin
 extern NSString *const CLCalendarSelectedDatePrintFontSize; //Selected Date print font size - Default : 13.f
 extern NSString *const CLCalendarBackgroundImageColor;      //BackgroundImage color - Default : see applyCustomDefaults.
 
--(NSDictionary *)CLCalendarBehaviorAttributes;       //Optional Function, Set the calendar behavior attributes by using above keys
-
--(void)dailyCalendarViewDidSelect: (NSDate *)date;
-
+- (NSDictionary *)CLCalendarBehaviorAttributes;       //Optional Function, Set the calendar behavior attributes by using above keys
+- (void)dailyCalendarViewDidSelect: (NSDate *)date;
 
 @end
-
 
 @interface CLWeeklyCalendarView : UIView
 
 @property (nonatomic, weak) id<CLWeeklyCalendarViewDelegate> delegate;
 @property (nonatomic, strong) NSDate *selectedDate;
+@property (nonatomic, strong) NSDictionary *calendarAttributes;
 
 - (void)redrawToDate: (NSDate *)dt;
-
--(void)updateWeatherIconByKey: (NSString *)key;
+- (void)updateWeatherIconByKey: (NSString *)key;
 
 @end
