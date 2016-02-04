@@ -23,7 +23,6 @@
 #define DATE_VIEW_MARGIN 3.f
 #define DATE_VIEW_HEIGHT 28.f
 
-
 #define DATE_LABEL_MARGIN_LEFT 9.f
 #define DATE_LABEL_INFO_WIDTH 160.f
 #define DATE_LABEL_INFO_HEIGHT 40.f
@@ -136,7 +135,6 @@ static float const CLCalendarSelectedDatePrintFontSizeDefault = 13.f;
     
     self.selectedDatePrintFontSize = attributes[CLCalendarSelectedDatePrintFontSize]? [attributes[CLCalendarSelectedDatePrintFontSize] floatValue] : CLCalendarSelectedDatePrintFontSizeDefault;
     
-    NSLog(@"%@  %f", attributes[CLCalendarBackgroundImageColor],  self.selectedDatePrintFontSize);
     self.backgroundImageColor = attributes[CLCalendarBackgroundImageColor];
     
     [self setNeedsDisplay];
@@ -214,12 +212,11 @@ static float const CLCalendarSelectedDatePrintFontSizeDefault = 13.f;
         
         //Apply swipe gesture
         UISwipeGestureRecognizer *recognizerRight;
-        recognizerRight.delegate=self;
+        recognizerRight.delegate = self;
         
         recognizerRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeRight:)];
         [recognizerRight setDirection:UISwipeGestureRecognizerDirectionRight];
         [_backgroundImageView addGestureRecognizer:recognizerRight];
-        
         
         UISwipeGestureRecognizer *recognizerLeft;
         recognizerLeft.delegate=self;
@@ -227,6 +224,7 @@ static float const CLCalendarSelectedDatePrintFontSizeDefault = 13.f;
         [recognizerLeft setDirection:UISwipeGestureRecognizerDirectionLeft];
         [_backgroundImageView addGestureRecognizer:recognizerLeft];
     }
+    
     _backgroundImageView.backgroundColor = self.backgroundImageColor? self.backgroundImageColor : [UIColor colorWithPatternImage:[UIImage calendarBackgroundImage:self.bounds.size.height]];;
     return _backgroundImageView;
 }
