@@ -105,6 +105,7 @@ static float const CLCalendarSelectedDatePrintFontSizeDefault = 13.f;
     CGRect dailyFrame = self.dailySubViewContainer.frame;
     dailyFrame.size.width = self.bounds.size.width;
     self.dailySubViewContainer.frame = dailyFrame;
+    
     [self initDailyViews];
 }
 
@@ -136,6 +137,8 @@ static float const CLCalendarSelectedDatePrintFontSizeDefault = 13.f;
     self.selectedDatePrintFontSize = attributes[CLCalendarSelectedDatePrintFontSize]? [attributes[CLCalendarSelectedDatePrintFontSize] floatValue] : CLCalendarSelectedDatePrintFontSizeDefault;
     
     self.backgroundImageColor = attributes[CLCalendarBackgroundImageColor];
+    
+    [self refreshBackgroundImageColor];
     
     [self setNeedsDisplay];
 }
@@ -225,7 +228,8 @@ static float const CLCalendarSelectedDatePrintFontSizeDefault = 13.f;
         [_backgroundImageView addGestureRecognizer:recognizerLeft];
     }
     
-    _backgroundImageView.backgroundColor = self.backgroundImageColor? self.backgroundImageColor : [UIColor colorWithPatternImage:[UIImage calendarBackgroundImage:self.bounds.size.height]];;
+    _backgroundImageView.backgroundColor = self.backgroundImageColor? self.backgroundImageColor : [UIColor colorWithPatternImage:[UIImage calendarBackgroundImage:self.bounds.size.height]];
+    
     return _backgroundImageView;
 }
 
@@ -255,6 +259,11 @@ static float const CLCalendarSelectedDatePrintFontSizeDefault = 13.f;
     }
     
     [self dailyCalendarViewDidSelect:[NSDate new]];
+}
+
+- (void)refreshBackgroundImageColor
+{
+    _backgroundImageView.backgroundColor = self.backgroundImageColor ? self.backgroundImageColor : [UIColor colorWithPatternImage:[UIImage calendarBackgroundImage:self.bounds.size.height]];
 }
 
 -(UILabel *)dayTitleViewForDate: (NSDate *)date inFrame: (CGRect)frame
