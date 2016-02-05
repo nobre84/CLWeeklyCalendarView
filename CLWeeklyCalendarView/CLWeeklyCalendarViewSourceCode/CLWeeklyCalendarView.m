@@ -140,6 +140,12 @@ static float const CLCalendarSelectedDatePrintFontSizeDefault = 13.f;
     [self applyCustomDefaults];
 }
 
+- (void)setSelectedDate:(NSDate *)selectedDate {
+    
+    _selectedDate = selectedDate;
+    [self redrawToDate:selectedDate];
+}
+
 - (void)setCalendarAttributes:(NSDictionary *)calendarAttributes {
     
     _calendarAttributes = calendarAttributes;
@@ -234,7 +240,6 @@ static float const CLCalendarSelectedDatePrintFontSizeDefault = 13.f;
         
     }
     return _dayTitleSubViewContainer;
-    
 }
 
 -(UIView *)dailySubViewContainer
@@ -298,7 +303,6 @@ static float const CLCalendarSelectedDatePrintFontSizeDefault = 13.f;
         NSDate *dt = [dtWeekStart addDays:i];
         
         [self dayTitleViewForDate: dt inFrame: CGRectMake(dailyWidth*i, 0, dailyWidth, DAY_TITLE_VIEW_HEIGHT)];
-        
         
         [self dailyViewForDate:dt inFrame: CGRectMake(dailyWidth*i, 0, dailyWidth, DATE_VIEW_HEIGHT) ];
         
@@ -372,8 +376,7 @@ static float const CLCalendarSelectedDatePrintFontSizeDefault = 13.f;
         strDate = [NSString stringWithFormat:@"Today, %@", strDate];
     }
     
-    [self adjustDailyInfoLabelAndWeatherIcon : NO];
-    
+    [self adjustDailyInfoLabelAndWeatherIcon:NO];
     
     self.dateInfoLabel.text = strDate;
 }
