@@ -140,12 +140,6 @@ static float const CLCalendarSelectedDatePrintFontSizeDefault = 13.f;
     [self applyCustomDefaults];
 }
 
-- (void)setSelectedDate:(NSDate *)selectedDate {
-    
-    _selectedDate = selectedDate;
-    [self redrawToDate:selectedDate];
-}
-
 - (void)setCalendarAttributes:(NSDictionary *)calendarAttributes {
     
     _calendarAttributes = calendarAttributes;
