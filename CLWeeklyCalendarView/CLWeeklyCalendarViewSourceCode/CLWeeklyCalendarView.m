@@ -23,7 +23,7 @@
 #define DATE_VIEW_HEIGHT 28.f
 
 #define DATE_LABEL_MARGIN_LEFT 9.f
-#define DATE_LABEL_INFO_WIDTH 160.f
+#define DATE_LABEL_INFO_WIDTH 200.f
 #define DATE_LABEL_INFO_HEIGHT 40.f
 
 #define WEATHER_ICON_WIDTH 20
@@ -61,7 +61,7 @@ static NSInteger const CLCalendarSelectedCurrentDayNumberBackgroundColorDefault 
 static NSString* const CLCalendarSelectedDatePrintFormatDefault = @"EEEE, d MMM yyyy";
 static float const CLCalendarSelectedDatePrintFontSizeDefault = 13.f;
 
-static NSInteger const CLCalendarBackgroundDefaultColor = 0xffffff;
+static NSInteger const CLCalendarBackgroundDefaultColor = 0xaaaaaa;
 
 @interface CLWeeklyCalendarView()<DailyCalendarViewDelegate, UIGestureRecognizerDelegate>
 
