@@ -13,7 +13,6 @@
 #import "NSDate+CL.h"
 #import "UIColor+CL.h"
 #import "NSDictionary+CL.h"
-#import "UIImage+CL.h"
 
 #define WEEKLY_VIEW_COUNT 7
 #define DAY_TITLE_VIEW_HEIGHT 20.f
@@ -61,6 +60,8 @@ static NSInteger const CLCalendarSelectedDayNumberBackgroundColorDefault = 0xfff
 static NSInteger const CLCalendarSelectedCurrentDayNumberBackgroundColorDefault = 0xffffff;
 static NSString* const CLCalendarSelectedDatePrintFormatDefault = @"EEEE, d MMM yyyy";
 static float const CLCalendarSelectedDatePrintFontSizeDefault = 13.f;
+
+static NSInteger const CLCalendarBackgroundDefaultColor = 0xffffff;
 
 @interface CLWeeklyCalendarView()<DailyCalendarViewDelegate, UIGestureRecognizerDelegate>
 
@@ -274,7 +275,7 @@ static float const CLCalendarSelectedDatePrintFontSizeDefault = 13.f;
         [_backgroundImageView addGestureRecognizer:recognizerLeft];
     }
     
-    _backgroundImageView.backgroundColor = self.backgroundImageColor? self.backgroundImageColor : [UIColor colorWithPatternImage:[UIImage calendarBackgroundImage:self.bounds.size.height]];
+    _backgroundImageView.backgroundColor = self.backgroundImageColor? self.backgroundImageColor : [UIColor colorWithHex:CLCalendarBackgroundDefaultColor];
     
     return _backgroundImageView;
 }
@@ -308,7 +309,7 @@ static float const CLCalendarSelectedDatePrintFontSizeDefault = 13.f;
 
 - (void)refreshBackgroundImageColor
 {
-    _backgroundImageView.backgroundColor = self.backgroundImageColor ? self.backgroundImageColor : [UIColor colorWithPatternImage:[UIImage calendarBackgroundImage:self.bounds.size.height]];
+    _backgroundImageView.backgroundColor = self.backgroundImageColor ? self.backgroundImageColor : [UIColor colorWithHex:CLCalendarBackgroundDefaultColor];
 }
 
 -(UILabel *)dayTitleViewForDate: (NSDate *)date inFrame: (CGRect)frame

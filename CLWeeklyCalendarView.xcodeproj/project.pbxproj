@@ -20,7 +20,6 @@
 		391EEB941A39118400748ADA /* NSDictionary+CL.m in Sources */ = {isa = PBXBuildFile; fileRef = 391EEB8C1A39118400748ADA /* NSDictionary+CL.m */; };
 		391EEB951A39118400748ADA /* UIColor+CL.m in Sources */ = {isa = PBXBuildFile; fileRef = 391EEB8E1A39118400748ADA /* UIColor+CL.m */; };
 		391EEB961A39118400748ADA /* CLWeeklyCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 391EEB901A39118400748ADA /* CLWeeklyCalendarView.m */; };
-		391EEB991A39184C00748ADA /* UIImage+CL.m in Sources */ = {isa = PBXBuildFile; fileRef = 391EEB981A39184C00748ADA /* UIImage+CL.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,8 +58,6 @@
 		391EEB8E1A39118400748ADA /* UIColor+CL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+CL.m"; sourceTree = "<group>"; };
 		391EEB8F1A39118400748ADA /* CLWeeklyCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLWeeklyCalendarView.h; sourceTree = "<group>"; };
 		391EEB901A39118400748ADA /* CLWeeklyCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLWeeklyCalendarView.m; sourceTree = "<group>"; };
-		391EEB971A39184C00748ADA /* UIImage+CL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+CL.h"; sourceTree = "<group>"; };
-		391EEB981A39184C00748ADA /* UIImage+CL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+CL.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,8 +161,6 @@
 				391EEB8C1A39118400748ADA /* NSDictionary+CL.m */,
 				391EEB8D1A39118400748ADA /* UIColor+CL.h */,
 				391EEB8E1A39118400748ADA /* UIColor+CL.m */,
-				391EEB971A39184C00748ADA /* UIImage+CL.h */,
-				391EEB981A39184C00748ADA /* UIImage+CL.m */,
 			);
 			path = Misc;
 			sourceTree = "<group>";
@@ -276,7 +271,6 @@
 				391EEB961A39118400748ADA /* CLWeeklyCalendarView.m in Sources */,
 				391EEB911A39118400748ADA /* DailyCalendarView.m in Sources */,
 				391EEB601A39112E00748ADA /* main.m in Sources */,
-				391EEB991A39184C00748ADA /* UIImage+CL.m in Sources */,
 				391EEB941A39118400748ADA /* NSDictionary+CL.m in Sources */,
 				391EEB951A39118400748ADA /* UIColor+CL.m in Sources */,
 				391EEB921A39118400748ADA /* DayTitleLabel.m in Sources */,
