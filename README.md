@@ -2,18 +2,17 @@
 
 CLWeeklyCalendarView is a scrollable weekly calendarView for iPhone. It is easy to use and customised.
 
-
-![alt tag](https://github.com/clisuper/CLWeeklyCalendarView/blob/master/screenshot.PNG)
+![alt tag](https://github.com/esusatyo/CLWeeklyCalendarView/blob/master/screenshot.PNG)
 
 ## Installation
+
+Manually:
+
 * Drag the `CLWeeklyCalendarViewSource` folder into your project.
 
+If you are using Cocoapods you can use this for the time being:
 
-## Demo Usage
-
-**Please download all of the files in the repo and run it directly to have a look.**
-
-
+`pod 'CLWeeklyCalendarView', :git => 'https://github.com/esusatyo/CLWeeklyCalendarView.git'`
 
 ## Initialize 
 Using CLWeeklyCalendarViewSource in your app will usually look as simple as this :
@@ -62,39 +61,46 @@ Using CLWeeklyCalendarViewDelegate to customise the behaviour
 
 Following customisation key is allowed
 
-```objective-c
-// Keys for customize the calendar behavior
-extern NSString *const CLCalendarWeekStartDay;    //The Day of weekStart from 1 - 7 - Default: 1
-
-extern NSString *const CLCalendarDayTitleTextColor; //Day Title text color,  Mon, Tue, etc label text color
-
-extern NSString *const CLCalendarSelectedDatePrintFormat;   //Selected Date print format,  - Default: @"EEE, d MMM yyyy"
-
-extern NSString *const CLCalendarSelectedDatePrintColor;    //Selected Date print text color -Default: [UIColor whiteColor]
-
-extern NSString *const CLCalendarSelectedDatePrintFontSize; //Selected Date print font size - Default : 13.f
-
-extern NSString *const CLCalendarBackgroundImageColor;      //BackgroundImage color - Default : see applyCustomDefaults.
+```
+CLCalendarWeekStartDay;    //The Day of weekStart from 1 - 7 - Default: 1
+CLCalendarDayTitleTextColor; //Day Title text color,  Mon, Tue, etc label text color
+CLCalendarPastDayNumberTextColor;    //Day number text color for dates in the past
+CLCalendarFutureDayNumberTextColor;  //Day number text color for dates in the future
+CLCalendarCurrentDayNumberTextColor; //Day number text color for today
+CLCalendarSelectedDayNumberTextColor;    //Day number text color for the selected day
+CLCalendarSelectedCurrentDayNumberTextColor; //Day number text color when today is selected
+CLCalendarCurrentDayNumberBackgroundColor;   //Day number background color for today when not selected
+CLCalendarSelectedDayNumberBackgroundColor;  //Day number background color for selected day
+CLCalendarSelectedCurrentDayNumberBackgroundColor;   //Day number background color when today is selected
+CLCalendarSelectedDatePrintFormat;   //Selected Date print format,  - Default: @"EEE, d MMM yyyy"
+CLCalendarSelectedDatePrintColor;    //Selected Date print text color -Default: [UIColor whiteColor]
+CLCalendarSelectedDatePrintFontSize; //Selected Date print font size - Default : 13.f
+CLCalendarBackgroundImageColor;      //BackgroundImage color - Default : see applyCustomDefaults.
 ```
 
+You need to fire below delegate function to apply your customisation:
 
-You need to fire below delegate function to apply your customisation
 ```objective-c
-#pragma mark - CLWeeklyCalendarViewDelegate
--(NSDictionary *)CLCalendarBehaviorAttributes
-{
-    return @{
-             CLCalendarWeekStartDay : @2, 	//Start from Tuesday every week
-             CLCalendarDayTitleTextColor : [UIColor yellowColor],
-             CLCalendarSelectedDatePrintColor : [UIColor greenColor],
-             };
-}
 
+self.calendarView.calendarAttributes = @{
+       CLCalendarBackgroundImageColor : [UIColor lightBackgroundColor],
+       
+       //Unselected days in the past and future, colour of the text and background.
+       CLCalendarPastDayNumberTextColor : [UIColor lightGrayColor],
+       CLCalendarFutureDayNumberTextColor : [UIColor lightGrayColor],
+       
+       CLCalendarCurrentDayNumberTextColor : [UIColor lightGrayColor],
+       CLCalendarCurrentDayNumberBackgroundColor : [UIColor clearColor],
+       
+       //Selected day (either today or non-today)
+       CLCalendarSelectedDayNumberTextColor : [UIColor whiteColor],
+       CLCalendarSelectedDayNumberBackgroundColor : [UIColor primaryColor],
+       CLCalendarSelectedCurrentDayNumberTextColor : [UIColor whiteColor],
+       CLCalendarSelectedCurrentDayNumberBackgroundColor : [UIColor primaryColor],
+       
+       //Day: e.g. Saturday, 1 Dec 2016
+       CLCalendarDayTitleTextColor : [UIColor darkGrayColor],
+       CLCalendarSelectedDatePrintColor : [UIColor darkGrayColor],
+       };
 
 ```
-
-
-
-## Credits
-
-CLFaceDetectionImagePicker is brought to you by [Caesar Li]
