@@ -90,6 +90,11 @@
         self.dateLabel.textColor = blnSelected ? self.selectedDayNumberTextColor : [self colorByDate];
 
     }
+    
+    if (self.dateEnabled == NO) {
+        self.dateLabel.textColor = self.disabledDayTextColor;
+        self.dateLabel.backgroundColor = self.disabledDayBackgroundColor;
+    }
 }
 
 -(UIColor *)colorByDate
@@ -99,7 +104,7 @@
 
 -(void)dailyViewDidClick: (UIGestureRecognizer *)tap
 {
-    [self.delegate dailyCalendarViewDidSelect: self.date];
+    [self.delegate dailyCalendarViewDidSelect:self.date];
 }
 
 @end

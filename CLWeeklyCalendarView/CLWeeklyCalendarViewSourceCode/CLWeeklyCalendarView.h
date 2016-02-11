@@ -24,6 +24,8 @@ extern NSString *const CLCalendarSelectedDatePrintFormat;   //Selected Date prin
 extern NSString *const CLCalendarSelectedDatePrintColor;    //Selected Date print text color -Default: [UIColor whiteColor]
 extern NSString *const CLCalendarSelectedDatePrintFontSize; //Selected Date print font size - Default : 13.f
 extern NSString *const CLCalendarBackgroundImageColor;      //BackgroundImage color - Default : see applyCustomDefaults.
+extern NSString *const CLCalendarDisabledDayTextColor;      //Day number text color for disabled dates
+extern NSString *const CLCalendarDisabledDayBackgroundColor;      //Day number background color for disabled dates
 
 - (void)dailyCalendarViewDidSelect: (NSDate *)date;
 
@@ -37,6 +39,8 @@ extern NSString *const CLCalendarBackgroundImageColor;      //BackgroundImage co
 @property (nonatomic, weak) id<CLWeeklyCalendarViewDelegate> delegate;
 @property (nonatomic, strong) NSDate *selectedDate;
 @property (nonatomic, strong) NSDictionary *calendarAttributes;
+
+@property (nonatomic, strong) NSArray *enabledDates; //Array of dates you want to enable (the rest of the dates will be disabled). Disabled dates will not be tappable.
 
 - (void)redrawToDate: (NSDate *)dt;
 - (void)updateWeatherIconByKey: (NSString *)key;

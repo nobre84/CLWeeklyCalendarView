@@ -15,6 +15,7 @@ If you are using Cocoapods you can use this for the time being:
 `pod 'CLWeeklyCalendarView', :git => 'https://github.com/esusatyo/CLWeeklyCalendarView.git'`
 
 ## Initialize 
+
 Using CLWeeklyCalendarViewSource in your app will usually look as simple as this :
 
 
@@ -55,11 +56,9 @@ You can delegate to tell the calenderView scrollTo specified date by using follo
 
 ## Customisation
 
-**Please be aware customisation delegate function is optional, if u do not apply it, it will just fire the default value.
+**Please be aware customisation method is optional, if u do not apply it, it will just fire the default value.
 
-Using CLWeeklyCalendarViewDelegate to customise the behaviour
-
-Following customisation key is allowed
+The following customisation key is allowed:
 
 ```
 CLCalendarWeekStartDay;    //The Day of weekStart from 1 - 7 - Default: 1
@@ -78,7 +77,7 @@ CLCalendarSelectedDatePrintFontSize; //Selected Date print font size - Default :
 CLCalendarBackgroundImageColor;      //BackgroundImage color - Default : see applyCustomDefaults.
 ```
 
-You need to fire below delegate function to apply your customisation:
+You need to use this method to apply your customisation:
 
 ```objective-c
 
@@ -104,3 +103,7 @@ self.calendarView.calendarAttributes = @{
        };
 
 ```
+
+If you call `setEnabledDates:` on `CLWeeklyCalendarView`, then it will make only the enabled dates to be selectable in the UI. This is useful if you only have content to show on particular days.
+
+If you use this option, make sure to also set `CLCalendarDisabledDayBackgroundColor` or `CLCalendarDisabledDayTextColor` to indicate to the users that some dates aren't selectable.
