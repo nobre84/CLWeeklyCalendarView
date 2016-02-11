@@ -529,7 +529,14 @@ static NSInteger const CLCalendarBackgroundDefaultColor = 0xaaaaaa;
 {
     [self markDateSelected:date];
     
-    [self.delegate dailyCalendarViewDidSelect:date];
+    //If not enabled, do not call the delegate method.
+    if ([self isDateEnabled:date] == NO) {
+        return;
+    }
+    
+    if ([self.delegate respondsToSelector:@selector(dailyCalendarViewDidSelect:)]) {
+        [self.delegate dailyCalendarViewDidSelect:date];
+    }
 }
 
 - (BOOL)isDateEnabled:(NSDate *)date {
