@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
   s.license      = { :type => "MIT" }
   s.author             = { "Enrico Susatyo" => "esusatyo@gmail.com" }
   s.social_media_url   = "http://twitter.com/esusatyo"
-  s.platform     = :ios
+  s.platform     = :ios, '7.0'
 
   s.source       = { :git => "https://github.com/esusatyo/CLWeeklyCalendarView.git", :commit => "948410c1c4f13a977b2c864b3da5dc00ba16f209" }
   
