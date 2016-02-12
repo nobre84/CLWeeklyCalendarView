@@ -6,13 +6,13 @@ CLWeeklyCalendarView is a scrollable weekly calendarView for iPhone. It is easy 
 
 ## Installation
 
-Manually:
-
-* Drag the `CLWeeklyCalendarViewSource` folder into your project.
-
 If you are using Cocoapods you can use this for the time being:
 
-`pod 'CLWeeklyCalendarView', :git => 'https://github.com/esusatyo/CLWeeklyCalendarView.git'`
+`pod 'CLWeeklyCalendarView'`
+
+Manually:
+
+- Drag the `CLWeeklyCalendarViewSource` folder into your project.
 
 ## Initialize 
 
@@ -54,7 +54,7 @@ You can delegate to tell the calenderView scrollTo specified date by using follo
 - (void)redrawToDate: (NSDate *)dt;
 ```
 
-## Customisation
+## UI Customisation
 
 **Please be aware customisation method is optional, if u do not apply it, it will just fire the default value.
 
@@ -103,6 +103,8 @@ self.calendarView.calendarAttributes = @{
        };
 
 ```
+
+## Disabling Date Selections
 
 If you call `setEnabledDates:` on `CLWeeklyCalendarView`, then it will make only the enabled dates to be selectable in the UI. This is useful if you only have content to show on particular days.
 
