@@ -6,7 +6,7 @@ CLWeeklyCalendarView is a scrollable weekly calendarView for iPhone. It is easy 
 
 ## Installation
 
-If you are using Cocoapods you can use this for the time being:
+If you are using CocoaPods you can use this for the time being:
 
 `pod 'CLWeeklyCalendarView'`
 
