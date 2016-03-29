@@ -50,6 +50,8 @@ NSString *const CLCalendarBackgroundImageColor = @"CLCalendarBackgroundImageColo
 NSString *const CLCalendarDisabledDayTextColor = @"CLCalendarDisabledDayTextColor";
 NSString *const CLCalendarDisabledDayBackgroundColor = @"CLCalendarDisabledDayBackgroundColor";
 
+NSString *const CLCalendarFont = @"CLCalendarFont";
+
 //Default Values
 static NSInteger const CLCalendarWeekStartDayDefault = 1;
 static NSInteger const CLCalendarDayTitleTextColorDefault = 0xC2E8FF;
@@ -97,6 +99,8 @@ static NSInteger const CLCalendarBackgroundDefaultColor = 0xaaaaaa;
 
 @property (nonatomic) float selectedDatePrintFontSize;
 @property (nonatomic, strong) UIColor *backgroundImageColor;
+
+@property (nonatomic, strong) UIFont *calendarFont;
 
 @end
 
@@ -196,6 +200,8 @@ static NSInteger const CLCalendarBackgroundDefaultColor = 0xaaaaaa;
     
     self.disabledDateTextColor = attributes[CLCalendarDisabledDayTextColor] ? attributes[CLCalendarDisabledDayTextColor] : [UIColor colorWithHex:CLCalendarDisabledDayTextColorDefault];
     
+    self.calendarFont = attributes[CLCalendarFont] ? attributes[CLCalendarFont] : [UIFont systemFontOfSize:10.0f];
+    
     self.backgroundImageColor = attributes[CLCalendarBackgroundImageColor];
     
     [self refreshBackgroundImageColor];
@@ -233,7 +239,8 @@ static NSInteger const CLCalendarBackgroundDefaultColor = 0xaaaaaa;
         _dateInfoLabel.textAlignment = NSTextAlignmentCenter;
         _dateInfoLabel.userInteractionEnabled = YES;
     }
-    _dateInfoLabel.font = [UIFont systemFontOfSize: self.selectedDatePrintFontSize];
+    
+    _dateInfoLabel.font = [UIFont fontWithName:self.calendarFont.fontName size:self.selectedDatePrintFontSize];
     _dateInfoLabel.textColor = self.selectedDatePrintColor;
     return _dateInfoLabel;
 }
@@ -330,7 +337,7 @@ static NSInteger const CLCalendarBackgroundDefaultColor = 0xaaaaaa;
     dayTitleLabel.backgroundColor = [UIColor clearColor];
     dayTitleLabel.textColor = self.dayTitleTextColor;
     dayTitleLabel.textAlignment = NSTextAlignmentCenter;
-    dayTitleLabel.font = [UIFont systemFontOfSize:DAY_TITLE_FONT_SIZE];
+    dayTitleLabel.font = [UIFont fontWithName:self.calendarFont.fontName size:DAY_TITLE_FONT_SIZE];
     
     dayTitleLabel.text = [[date getDayOfWeekShortString] uppercaseString];
     dayTitleLabel.date = date;
