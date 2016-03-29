@@ -26,7 +26,7 @@ extern NSString *const CLCalendarSelectedDatePrintFontSize; //Selected Date prin
 extern NSString *const CLCalendarBackgroundImageColor;      //BackgroundImage color - Default : see applyCustomDefaults.
 extern NSString *const CLCalendarDisabledDayTextColor;      //Day number text color for disabled dates
 extern NSString *const CLCalendarDisabledDayBackgroundColor;      //Day number background color for disabled dates
-extern NSString *const CLCalendarFont;
+extern NSString *const CLCalendarFont; //Preferred font of the calendar UI, default to system font. Font size passed here is ignored.
 
 - (void)dailyCalendarViewDidSelect: (NSDate *)date;
 
