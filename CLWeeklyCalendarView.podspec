@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "CLWeeklyCalendarView"
-  s.version      = "0.0.3"
+  s.version      = "0.0.4"
   s.summary      = "Weekly calendar view for iOS."
   s.description  = "Weekly Calendar view for iOS, with customisable background colour, date colour, scrolling to different weeks, disabling selection of certain dates, and more. "
   
@@ -19,7 +19,7 @@ Pod::Spec.new do |s|
   s.social_media_url   = "http://twitter.com/esusatyo"
   s.platform     = :ios, '7.0'
 
-  s.source       = { :git => "https://github.com/esusatyo/CLWeeklyCalendarView.git", :tag => '0.0.3'}
+  s.source       = { :git => "https://github.com/nobre84/CLWeeklyCalendarView.git", :tag => s.version.to_s}
   
   s.source_files  = "CLWeeklyCalendarView/CLWeeklyCalendarViewSourceCode/**/*.{h,m}"
 
